@@ -1,0 +1,9 @@
+onnxruntime-gpu; platform_machine == "x86_64"
+onnxruntime; platform_machine != "x86_64"
+transformers>=5.18
+huggingface_hub
+numpy
+tqdm
+mcp>=1.27
+# optional experimental multimodal (image + PDF) indexing: pip install Pillow pypdf
+# optional torch bf16 reference backend: pip install sentence-transformers>=6.1.0 torch

@@ -1,0 +1,12 @@
+[Unit]
+Description=csearch MCP server daemon
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/csearch-mcp --transport http --warm
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target

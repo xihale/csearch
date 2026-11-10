@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "csearch"
+version = "0.1.0"
+description = "Experimental local hybrid code search built to support quantized Google EmbeddingGemma 2 (CLI & MCP server)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "GPL-3.0-or-later"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    'onnxruntime-gpu; platform_machine == "x86_64"',
+    'onnxruntime; platform_machine != "x86_64"',
+    "transformers>=5.18",
+    "huggingface_hub",
+    "numpy",
+    "tqdm",
+    "mcp>=1.27",
+]
+
+[project.optional-dependencies]
+multimodal = [
+    "Pillow",
+    "pypdf",
+]
+torch = [
+    "sentence-transformers>=6.1.0",
+    "torch",
+]
+
+[project.scripts]
+csearch = "csearch.cli:main"
+csearch-mcp = "csearch.mcp_server:main"
+
+[tool.setuptools.packages.find]
+include = ["csearch*"]
